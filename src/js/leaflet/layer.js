@@ -56,9 +56,9 @@ GEOJSON LAYER
 var baseUrl = window.location.origin;
 console.log(baseUrl);
 
-$.getJSON(baseUrl + '/assets/gis/geojson/titik-sekolah.geojson', function (data) {
+$.getJSON(baseUrl + '/src/assets/gis/geojson/titik-sekolah.geojson', function (data) {
     var ratIcon = L.icon({
-        iconUrl: '/assets/gis/marker.png',
+        iconUrl: '/src/assets/gis/marker.png',
         iconSize: [24, 24]
     });
     L.geoJson(data, {
@@ -70,7 +70,7 @@ $.getJSON(baseUrl + '/assets/gis/geojson/titik-sekolah.geojson', function (data)
     }).addTo(school);
 });
 
-$.getJSON(baseUrl +'/assets/gis/geojson/jalan-jaksel.geojson', function (data) {
+$.getJSON(baseUrl +'/src/assets/gis/geojson/jalan-jaksel.geojson', function (data) {
     L.geoJson(data, {
         style: function (feature) {
             var color,
@@ -87,7 +87,7 @@ $.getJSON(baseUrl +'/assets/gis/geojson/jalan-jaksel.geojson', function (data) {
 });
 
 
-$.getJSON(baseUrl + '/assets/gis/geojson/polygon-tebet.geojson', function (kode) {
+$.getJSON(baseUrl + '/src/assets/gis/geojson/polygon-tebet.geojson', function (kode) {
     L.geoJson(kode, {
         style: function (feature) {
             var fillColor,
@@ -123,7 +123,7 @@ $.getJSON(baseUrl + '/assets/gis/geojson/polygon-tebet.geojson', function (kode)
     }).addTo(tebet);
 });
 
-$.getJSON(baseUrl + '/assets/gis/geojson/polygon-jaksel.geojson', function (kode) {
+$.getJSON(baseUrl + '/src/assets/gis/geojson/polygon-jaksel.geojson', function (kode) {
     L.geoJson( kode, {
         style: function(feature){
             var fillColor,
@@ -160,7 +160,7 @@ $.getJSON(baseUrl + '/assets/gis/geojson/polygon-jaksel.geojson', function (kode
 });
 
 
-$.getJSON(baseUrl + '/assets/gis/geojson/polygon-tebet.geojson', function (kode) {
+$.getJSON(baseUrl + '/src/assets/gis/geojson/polygon-tebet.geojson', function (kode) {
     L.geoJson(kode, {
         style: function (feature) {
             return { color: "orange", weight: 3, fillOpacity: 0, dashArray: '5' }; // Orange dashed border, no fill

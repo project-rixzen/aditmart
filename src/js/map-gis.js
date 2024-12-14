@@ -60,7 +60,7 @@ L.control.scale({ metric: true, position: "bottomleft" }).addTo(map);
 var north = L.control({ position: "bottomleft" });
 north.onAdd = function (map) {
     var div = L.DomUtil.create("div", "info legend");
-    div.innerHTML = '<img src="/assets/gis/arah-mata-angin.png" style=width:200px;>';
+    div.innerHTML = '<img src="/src/assets/gis/arah-mata-angin.png" style=width:200px;>';
     return div;
 }
 north.addTo(map);
