@@ -1,13 +1,14 @@
 var indomaret = new L.LayerGroup();
 var jalan = new L.LayerGroup();
-var kelurahan = new L.LayerGroup();
+var kecamatan = new L.LayerGroup();
+var jakbar = new L.LayerGroup();
 var sungai = new L.LayerGroup();
 
 var map = L.map('map', {
     center: [-6.152774156483126, 106.78470822205712],
     zoom: 13,
     zoomControl: false,
-    layers: [indomaret]
+    layers: [indomaret, kecamatan]
 });
 
 var GoogleMaps = new L.TileLayer('https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
@@ -40,7 +41,8 @@ var baseLayers = {
 var groupedOverlays = {
     "Peta Dasar": {
         'Indomaret': indomaret,
-        'Kelurahan': kelurahan,
+        'Kecamatan Grogol Petamburan': kecamatan,
+        'Kota Jakarta Barat': jakbar,
         'Jalan Jakarta Barat': jalan,
         'Sungai Jakarta Barat': sungai,
     }
@@ -63,7 +65,8 @@ $.getJSON(baseUrl + '/src/assets/gis/geojson/indomaret_locations.geojson', funct
     L.geoJson(data, {
         pointToLayer: function (feature, latlng) {
             var marker = L.marker(latlng, { icon: ratIcon });
-            marker.bindPopup(feature.properties.name);
+            // Menggabungkan name dan address dalam bindPopup
+            marker.bindPopup('<b>' + feature.properties.name + '</b><br>' + feature.properties.address);
             return marker;
         }
     }).addTo(indomaret);
@@ -101,16 +104,28 @@ $.getJSON(baseUrl +'/src/assets/gis/geojson/sungai_jakarta_barat.geojson', funct
     }).addTo(sungai); 
 });
 
-
-$.getJSON(baseUrl + '/src/assets/gis/geojson/batas_kelurahan.geojson', function (kode) {
+$.getJSON(baseUrl + '/src/assets/gis/geojson/kecamatan_grogol_petamburan.geojson', function (kode) {
     L.geoJson(kode, {
         style: function (feature) {
-            return { color: "#FF5733", weight: 3, fillOpacity: 0 }; // orang border, transparent fill, no dashes
-        },
-        onEachFeature: function (feature, layer) {
-            layer.bindPopup(feature.properties.tebet);
+            return { 
+                color: "#FFA500", 
+                weight: 2, 
+                fillOpacity: 0.2
+            };
         }
-    }).addTo(kelurahan);
+    }).addTo(kecamatan);
+});
+
+$.getJSON(baseUrl + '/src/assets/gis/geojson/jakarta_barat.geojson', function (kode) {
+    L.geoJson(kode, {
+        style: function (feature) {
+            return { 
+                color: "#33FF57",    
+                weight: 3, 
+                fillOpacity: 0.5    
+            };
+        }
+    }).addTo(jakbar);
 });
 
 
